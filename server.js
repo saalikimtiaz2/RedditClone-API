@@ -1,29 +1,21 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const compression = require("compression");
-const establishDBConnection = require("./config/dbConnection");
-const apiRouter = require("./router");
-const log = require("./logger");
+/* eslint-disable import/no-extraneous-dependencies */
+const dotEnv = require('dotenv');
+const morgan = require('morgan');
+const app = require('./app');
+const establishDBConnection = require('./config/dbConnection');
 
-// constants
-const PORT = process.env.PORT || 5001;
-// Initialize the application
-const app = express();
-// Initializing the middlewares
-app.use(helmet());
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(compression());
-app.use(cors());
-// Estavlish connection with DB
+dotEnv.config({ path: './.env' });
+
 establishDBConnection();
-// Router
-app.use("/", apiRouter);
-// Setup the server
-app.listen(PORT, () => {
-    log.info(`Server Running at Port ${PORT}`);
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+// ---------------------- server ----------------------
+
+const port = process.env.PORT || 4001;
+
+app.listen(port, () => {
+  console.log(`Server connected Port ${port}...`);
 });

@@ -5,16 +5,21 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:prod": "SET NODE_ENV=production & nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "ndb server.js"
   },
   "author": "Salik Imtiaz",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.8",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.13.17",
     "morgan": "^1.10.0",
+    "validator": "^13.9.0",
     "winston": "^3.9.0"
   },
   "devDependencies": {

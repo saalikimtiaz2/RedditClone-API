@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const dotEnv = require('dotenv');
 const morgan = require('morgan');
 const app = require('./app');
+const log = require('./logger');
 const establishDBConnection = require('./config/dbConnection');
 
 dotEnv.config({ path: './.env' });
@@ -17,5 +17,5 @@ if (process.env.NODE_ENV === 'development') {
 const port = process.env.PORT || 4001;
 
 app.listen(port, () => {
-  console.log(`Server connected Port ${port}...`);
+  log.info(`Server connected Port ${port}`);
 });

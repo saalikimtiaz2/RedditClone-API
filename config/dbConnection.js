@@ -3,8 +3,12 @@ const log = require('../logger');
 
 const connectDB = async () => {
   try {
+    const dbLink =
+      process.env.NODE_ENV === 'production'
+        ? process.env.DB_URI
+        : process.env.DB_LOCAL_URI;
     // connect to mongodb atlas
-    await mongoose.connect(process.env.DB_URI, {
+    await mongoose.connect(dbLink, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

@@ -13,7 +13,11 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    log.info('Database Connected!');
+    log.info(
+      `${
+        process.env.NODE_ENV === 'production' ? 'Remote' : 'Local'
+      } Database Connected!`
+    );
   } catch (err) {
     log.error(err.message);
   }

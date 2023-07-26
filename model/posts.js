@@ -5,7 +5,6 @@ const postsSchema = new mongoose.Schema({
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
-    required: true,
   },
   likes: {
     type: Number,
